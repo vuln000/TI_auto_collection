@@ -2,7 +2,7 @@ name: Daily Threat Intelligence Collection
 
 on:
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
