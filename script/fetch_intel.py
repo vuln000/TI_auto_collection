@@ -133,12 +133,45 @@ def update_readme_status(source_url, status):
     with open(readme_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
-# 主函数
+# 获取统计信息
+def update_statistics():
+    import pandas as pd
+    csv_path = os.path.join(os.path.dirname(__file__), '..', 'ti_collections', 'threat_intel_total.csv')
+    df = pd.read_csv(csv_path)
+    total_count = len(df)
+    ioc_type_counts = df['ioc_type'].value_counts().to_dict()
+    source_counts = df['source'].value_counts().to_dict()
+    
+    # 生成统计信息文本
+    stats_text = f"\n## 数据统计信息\n\n| 统计项 | 值 |\n|--------|----|\n| 总记录数 | {total_count} |\n\n### IOC类型统计\n\n| 类型 | 数量 |\n|------|------|\n" + '\n'.join([f'| {k} | {v} |' for k, v in ioc_type_counts.items()]) + "\n\n### 数据源统计\n\n| 数据源 | 数量 |\n|--------|------|\n" + '\n'.join([f'| {k} | {v} |' for k, v in source_counts.items()]) + "\n"
+    
+    # 更新README文件
+    readme_path = os.path.join(os.path.dirname(__file__), '..', 'README.md')
+    with open(readme_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 移除旧的统计信息
+    if '## 数据统计信息' in content:
+        content = content.split('## 数据统计信息')[0]
+    
+    # 添加新的统计信息
+    content = content + stats_text
+    
+    with open(readme_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    
+    return {
+        'total_count': total_count,
+        'ioc_type_counts': ioc_type_counts,
+        'source_counts': source_counts
+    }
+
 def main():
     output_dir = os.path.join(os.path.dirname(__file__), '..', 'ti_collections')
     os.makedirs(output_dir, exist_ok=True)
-    process_cryptojacking(cryptojacking_url, output_dir)    
-    process_threatfox(threatfox_url, output_dir)
+    #process_cryptojacking(cryptojacking_url, output_dir)    
+    #process_threatfox(threatfox_url, output_dir)
+    update_statistics()
     print('All done!')
 if __name__ == '__main__':
     main()
