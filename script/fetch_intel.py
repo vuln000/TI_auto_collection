@@ -36,10 +36,13 @@ def process_threatfox(url, output_dir):
             from convert_to_csv import convert_to_csv
             convert_to_csv(threat_data, output_dir,source=url)
             print(f'Successfully processed {url} and saved to CSV in {output_dir}')
+            # 更新README状态
+            update_readme_status(url, 'success')
         else:
             print('Invalid JSON format')
     else:
         print(f'Failed to download {url}')
+        update_readme_status(url, 'failed')
 
 # 处理cryptojacking情报
 def process_cryptojacking(url, output_dir):
@@ -85,10 +88,50 @@ def process_cryptojacking(url, output_dir):
             # 删除tar.gz文件
             os.remove(file_name)
             print(f'Successfully processed {url} and saved to CSV in {output_dir}')
+            # 更新README状态
+            update_readme_status(url, 'success')
         else:
             print('No domains file found in extracted directory')
+            update_readme_status(url, 'failed')
     else:
         print(f'Failed to download {url}')
+        update_readme_status(url, 'failed')
+
+def update_readme_status(source_url, status):
+    """更新README.md文件中的状态信息"""
+    import time
+    readme_path = os.path.join(os.path.dirname(__file__), '..', 'README.md')
+    
+    # 读取当前README内容
+    with open(readme_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 检查是否已有状态表格
+    if '## 数据更新状态' not in content:
+        # 添加状态表格
+        status_table = """
+## 数据更新状态
+
+| 数据源 | 最后更新时间 | 状态 |
+|--------|------------|------|
+"""
+        content = content + status_table
+    
+    # 更新或添加状态行
+    current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+    status_line = f"| {source_url} | {current_time} | {'✅ 成功' if status == 'success' else '❌ 失败'} |"
+    
+    if f"| {source_url} |" in content:
+        # 更新现有行
+        import re
+        content = re.sub(fr'\| {source_url} \|.*\|.*\|', status_line, content)
+    else:
+        # 添加新行
+        content = content + '\n' + status_line
+    
+    # 写回文件
+    with open(readme_path, 'w', encoding='utf-8') as f:
+        f.write(content)
 
 # 主函数
 def main():
