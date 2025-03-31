@@ -12,6 +12,5 @@ TI Auto Collection is an automated tool for collecting open-source threat intell
 
 | 数据源 | 最后更新时间 | 状态 |
 |--------|------------|------|
-
-| https://dsi.ut-capitole.fr/blacklists/download/cryptojacking.tar.gz | 2025-03-31 10:09:51 | ✅ 成功 |
-| https://threatfox.abuse.ch/export/json/recent/ | 2025-03-31 10:09:53 | ✅ 成功 |
+| https://dsi.ut-capitole.fr/blacklists/download/cryptojacking.tar.gz | 2025-03-31 10:16:23 | ✅ 成功 |
+| https://threatfox.abuse.ch/export/json/recent/ | 2025-03-31 10:16:25 | ✅ 成功 |
