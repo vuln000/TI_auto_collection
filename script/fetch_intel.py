@@ -169,8 +169,8 @@ def update_statistics():
 def main():
     output_dir = os.path.join(os.path.dirname(__file__), '..', 'ti_collections')
     os.makedirs(output_dir, exist_ok=True)
-    #process_cryptojacking(cryptojacking_url, output_dir)    
-    #process_threatfox(threatfox_url, output_dir)
+    process_cryptojacking(cryptojacking_url, output_dir)    
+    process_threatfox(threatfox_url, output_dir)
     update_statistics()
     print('All done!')
 if __name__ == '__main__':
