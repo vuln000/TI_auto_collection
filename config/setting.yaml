@@ -1,0 +1,29 @@
+# FinalThreatFeed 配置文件
+# 存放系统级别的配置参数
+
+# 路径配置
+paths:
+  # 配置文件路径
+  feeds_config: "config/feeds.yaml"
+  # 日志文件路径
+  logs: "logs/"
+  # 输出文件路径
+  output: "output/"
+  # 保留天数
+
+# Fetcher配置
+fetcher:
+  # 描述文件路径,对misp类型的数据，记录已下载的情报ID，对csv、text、json类型的数据，记录已下载的文件URL
+  describe_file: "output/describe_file.csv"
+  # 最大并发数
+  concurrency: 20
+  # 超时时间（秒）
+  timeout: 30
+  # 时间范围（天）- 用于筛选feeds中有效的部分
+  time_range_days: 10
+  # 用户代理字符串
+  user_agent: "FinalThreatFeed/1.0"
+
+# collector配置
+collector:  
+  keep_days: 60

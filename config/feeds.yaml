@@ -1,0 +1,125 @@
+# ==========================================
+# FinalThreatFeed 配置文件
+# 采用基于类型的pipeline架构
+# ==========================================
+
+# feeds配置 - 每个feed必须指定type字段以匹配对应的pipeline
+feeds:
+  # ------------------------------------------
+  # CSV 格式 feed
+  # ------------------------------------------
+  - name: "abuse.ch-SSL"
+    enabled: true
+    url: "https://sslbl.abuse.ch/blacklist/sslblacklist.csv"
+    source_format: "csv"  # 指定feed类型
+    description: "Sharing blocklist data for malicious SSL certificates and JA3/JA3s fingerprints"
+    # CSV特定配置
+    csv_config:
+      delimiter: ","        # 分隔符
+      time_column: 1        # 第1列是时间信息
+      time_format: "%Y-%m-%d %H:%M:%S"  # 时间格式
+      value_column: 2         # 第2列是 IP (dst_ip)
+      threat_type: "sha1"        # 强制指定类型
+      comment_column: 3         # 第3列是注释 (comment)
+
+  - name: "Alienvault-IP-Reputation"
+    enabled: true
+    url: "https://reputation.alienvault.com/reputation.generic"
+    source_format: "csv"  # 指定feed类型
+    description: "Alienvault IP Reputation Database"
+    # CSV特定配置
+    csv_config:
+      delimiter: " # "        # 分隔符
+      value_column: 1         # 第1列是 IP
+      threat_type: "ip-dst"        # 强制指定类型
+      comment_column: 2         # 第3列是注释 (comment)
+
+  - name: "Phishtank"
+    enabled: true
+    url: "https://data.phishtank.com/data/online-valid.csv"
+    source_format: "csv"  # 指定feed类型
+    description: "Phishtank online valid phishing"
+    # CSV特定配置
+    csv_config:
+      delimiter: ","        # 分隔符
+      value_column: 2         # 第1列是 IP
+      threat_type: "url"        # 强制指定类型
+      time_column: 4        # 第1列是时间信息
+      time_format: "%Y-%m-%dT%H:%M:%S%z"  # 时间格式
+      jump_line: 1  # 跳过第一行标题行
+      static_comment: ["Phishing"]  # 静态标签
+  # ------------------------------------------
+  # 纯文本/正则提取 feed
+  # ------------------------------------------
+  - name: "Tor_Exit_Nodes"
+    enabled: false
+    url: "https://check.torproject.org/torbulkexitlist"
+    source_format: "text"  # 指定feed类型
+    description: "Official Tor Exit Nodes"
+    # 文本特定配置
+    text_config:
+      regex: "^(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})$"  # IP地址正则
+      ioc_type: "ip"  # 所有匹配项都作为IP
+      static_comment: ["anonymizer", "tor"]  # 静态标签
+
+  - name: "IPsum-l4"
+    enabled: true
+    url: "https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt"
+    source_format: "text"  # 指定feed类型
+    description: "IPsum (aggregation of all feeds) - level 4 - very low false positives"
+    # 文本特定配置
+    text_config:
+      regex: "^(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})$"  # IP地址正则
+      ioc_type: "ip"  # 所有匹配项都作为IP
+      static_comment: ["Malicious"]  # 静态标签
+
+  - name: "IPsum-l5"
+    enabled: true
+    url: "https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt"
+    source_format: "text"  # 指定feed类型
+    description: "IPsum (aggregation of all feeds) - level 5 -  ultra false positives "
+    # 文本特定配置
+    text_config:
+      regex: "^(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})$"  # IP地址正则
+      ioc_type: "ip"  # 所有匹配项都作为IP
+      static_comment: ["Malicious"]  # 静态标签
+
+
+
+  # ------------------------------------------
+  # MISP 格式 feed
+  # ------------------------------------------
+  - name: "CIRCL OSINT Feed"
+    enabled: true
+    url: "https://www.circl.lu/doc/misp/feed-osint/"
+    source_format: "misp"  # 指定feed类型
+    threat_level_id: [1,2]  # 威胁等级ID指定，不在该范围的情报将被过滤掉，4:Undefined 3:Low 2:Medium 1:High
+    description: "CIRCL Official OSINT Threat Feed"
+
+  - name: "abuse.ch"
+    enabled: true
+    url: "https://threatfox.abuse.ch/downloads/misp"
+    source_format: "misp"  # 指定feed类型
+    threat_level_id: [1,2]  # 威胁等级ID指定，不在该范围的情报将被过滤掉，4:Undefined 3:Low 2:Medium 1:High
+    description: "Sharing indicators of compromise (IOCs) associated with malware"
+
+  - name: "abuse.ch-Bazaar"
+    enabled: true
+    url: "https://bazaar.abuse.ch/downloads/misp/"
+    source_format: "misp"  # 指定feed类型
+    threat_level_id: [1,2]  # 威胁等级ID指定，不在该范围的情报将被过滤掉，4:Undefined 3:Low 2:Medium 1:High
+    description: "Sharing newly observed malware samples"
+
+  - name: "abuse.ch-URLhasus"
+    enabled: true
+    url: "https://urlhaus.abuse.ch/downloads/misp"
+    source_format: "misp"  # 指定feed类型
+    threat_level_id: [1,2]  # 威胁等级ID指定，不在该范围的情报将被过滤掉，4:Undefined 3:Low 2:Medium 1:High
+    description: "Sharing malicious URLs being used for malware distribution"
+
+  - name: "Botvrij.eu"
+    enabled: true
+    url: "https://www.botvrij.eu/data/feed-osint"
+    source_format: "misp"  # 指定feed类型
+    threat_level_id: [1,2]  # 威胁等级ID指定，不在该范围的情报将被过滤掉，4:Undefined 3:Low 2:Medium 1:High
+    description: "Botvrij.eu OSINT Threat Feed"
