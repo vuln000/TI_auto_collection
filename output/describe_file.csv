@@ -42,3 +42,13 @@ download_time,name,source_format,url,event_uuid,data_type,data_size,threat_level
 2025-12-06T01:08:49.851364,abuse.ch-URLhasus,misp,https://urlhaus.abuse.ch/downloads/misp/84ac3dbe-65df-4889-9e82-799770ac69e0.json,84ac3dbe-65df-4889-9e82-799770ac69e0,json,1749,2,2025-12-06T00:15:16
 2025-12-06T01:08:49.917577,Alienvault-IP-Reputation,csv,https://reputation.alienvault.com/reputation.generic,,csv,609,,
 2025-12-06T01:08:57.132103,Phishtank,csv,https://data.phishtank.com/data/online-valid.csv,,csv,47584,,
+2025-12-07T01:19:16.628144,IPsum-l5,text,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt,,text,4731,,
+2025-12-07T01:19:16.666381,IPsum-l4,text,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt,,text,9258,,
+2025-12-07T01:19:16.927286,abuse.ch-Bazaar,misp,https://bazaar.abuse.ch/downloads/misp//c81d6985-4f27-416a-a5d1-7fca6d80b11d.json,c81d6985-4f27-416a-a5d1-7fca6d80b11d,json,2056,2,2025-12-07T00:03:01
+2025-12-07T01:19:16.936752,abuse.ch,misp,https://threatfox.abuse.ch/downloads/misp/22620e50-80d0-4c4b-8718-e4171fa20d96.json,22620e50-80d0-4c4b-8718-e4171fa20d96,json,335,2,2025-12-07T00:03:07
+2025-12-07T01:19:16.973627,Alienvault-IP-Reputation,csv,https://reputation.alienvault.com/reputation.generic,,csv,609,,
+2025-12-07T01:19:17.030737,abuse.ch-URLhasus,misp,https://urlhaus.abuse.ch/downloads/misp/f4d50ae9-f64e-4cbc-bb5f-84a22b5831c6.json,f4d50ae9-f64e-4cbc-bb5f-84a22b5831c6,json,2330,2,2025-12-07T00:15:18
+2025-12-07T01:19:22.599919,Phishtank,csv,https://data.phishtank.com/data/online-valid.csv,,csv,47249,,
+2025-12-07T01:19:23.929906,abuse.ch-SSL,csv,https://sslbl.abuse.ch/blacklist/sslblacklist.csv,,csv,8571,,
+2025-12-07T01:19:25.997894,CIRCL OSINT Feed,misp,https://www.circl.lu/doc/misp/feed-osint//5b773e07-e694-458b-b99c-27f30a016219.json,5b773e07-e694-458b-b99c-27f30a016219,json,16,1,2025-12-06T01:42:45
+2025-12-07T01:19:26.272173,CIRCL OSINT Feed,misp,https://www.circl.lu/doc/misp/feed-osint//ea593018-b2e9-4e7e-8da9-cc20a751e3f6.json,ea593018-b2e9-4e7e-8da9-cc20a751e3f6,json,177,1,2025-12-06T21:01:25
