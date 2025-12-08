@@ -1,65 +1,77 @@
 # FinalThreatFeed
 
-🚀 开源威胁情报自动化搜集工具
+🚀 **高性能开源威胁情报聚合引擎**
 
-## 项目简介
+## 📖 项目简介
 
-FinalThreatFeed是一个功能强大的威胁情报自动化搜集工具，能够从多个公开的威胁情报源获取数据，并进行统一格式处理和存储。
+FinalThreatFeed 是一款现代化的威胁情报（CTI）自动化采集与融合框架。它基于高性能异步架构设计，旨在解决多源情报采集难、格式混乱、数据冗余等痛点。
 
-### 主要特性
+通过标准化的数据处理管道，FinalThreatFeed 能够从全球开源情报源中持续汲取高价值数据，自动完成清洗、去重与结构化处理，为企业的安全防御体系提供精准、鲜活的威胁情报支撑。
 
-- 📊 支持多种格式的威胁情报源（CSV、文本、MISP等）
-- ⚡ 异步并发采集，提高效率
-- 🧹 自动去重和数据清洗
-- 📈 每日自动更新威胁情报
-- 🎯 可配置的威胁情报源
-- 🔍 支持IOC类型识别和分类
+### ✨ 核心特性
 
-## 订阅列表
+- ⚡ **极速异步架构**: 采用 Python Asyncio + HTTPX 构建高并发采集核心，大幅提升数据吞吐效率。
+- 🧩 **全栈格式兼容**: 原生支持 MISP、CSV、Text 等主流情报格式，轻松打破数据源格式壁垒。
+- 🧹 **智能清洗去重**: 内置精细化数据治理算法，自动剔除噪声与重复数据，确保情报的高信噪比。
+- 🔄 **全生命周期管理**: 自动化的情报老化与更新机制，确保本地情报库始终保持最新状态。
+- 🛠️ **灵活扩展配置**: 基于 YAML 的声明式配置管理，无需编码即可快速接入新的情报源。
+- 🏷️ **深度 IOC 识别**: 自动解析并分类 IP、Domain、URL 等关键威胁指标，赋能精细化分析。
 
-| 状态 | 名称 | 类型 | 描述 | URL |
-|------|------|------|------|-----|
-| 🟢 | abuse.ch-SSL | csv | Sharing blocklist data for malicious SSL certificates and JA3/JA3s fingerprints | https://sslbl.abuse.ch/blacklist/sslblacklist.csv |
-| 🟢 | Alienvault-IP-Reputation | csv | Alienvault IP Reputation Database | https://reputation.alienvault.com/reputation.generic |
-| 🟢 | Phishtank | csv | Phishtank online valid phishing | https://data.phishtank.com/data/online-valid.csv |
-| ⚫ | Tor_Exit_Nodes | text | Official Tor Exit Nodes | https://check.torproject.org/torbulkexitlist |
-| 🟢 | IPsum-l4 | text | IPsum (aggregation of all feeds) - level 4 - very low false positives | https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt |
-| 🟢 | IPsum-l5 | text | IPsum (aggregation of all feeds) - level 5 -  ultra false positives  | https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt |
-| 🟢 | CIRCL OSINT Feed | misp | CIRCL Official OSINT Threat Feed | https://www.circl.lu/doc/misp/feed-osint/ |
-| 🟢 | abuse.ch | misp | Sharing indicators of compromise (IOCs) associated with malware | https://threatfox.abuse.ch/downloads/misp |
-| 🟢 | abuse.ch-Bazaar | misp | Sharing newly observed malware samples | https://bazaar.abuse.ch/downloads/misp/ |
-| 🟢 | abuse.ch-URLhasus | misp | Sharing malicious URLs being used for malware distribution | https://urlhaus.abuse.ch/downloads/misp |
-| 🟢 | Botvrij.eu | misp | Botvrij.eu OSINT Threat Feed | https://www.botvrij.eu/data/feed-osint |
+> 🕒 **最后更新时间:** `2025-12-08 01:20:05`
 
-### 状态说明
+## 📡 订阅源状态监控
 
-- 🟢: 订阅正常
-- 🔴: 订阅异常
-- ⚫: 订阅已禁用
+| 运行状态 | 情报源名称 | 格式类型 | 源地址 (URL) |
+|:---:|---|:---:|---|
+| 🟢 | **abuse.ch-SSL** | `csv` | https://sslbl.abuse.ch/blacklist/sslblacklist.csv |
+| 🟢 | **Alienvault-IP-Reputation** | `csv` | https://reputation.alienvault.com/reputation.generic |
+| 🟢 | **Phishtank** | `csv` | https://data.phishtank.com/data/online-valid.csv |
+| ⚫ | **Tor_Exit_Nodes** | `text` | https://check.torproject.org/torbulkexitlist |
+| 🟢 | **IPsum-l4** | `text` | https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt |
+| 🟢 | **IPsum-l5** | `text` | https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt |
+| 🟢 | **CIRCL OSINT Feed** | `misp` | https://www.circl.lu/doc/misp/feed-osint/ |
+| 🟢 | **abuse.ch** | `misp` | https://threatfox.abuse.ch/downloads/misp |
+| 🟢 | **abuse.ch-Bazaar** | `misp` | https://bazaar.abuse.ch/downloads/misp/ |
+| 🟢 | **abuse.ch-URLhasus** | `misp` | https://urlhaus.abuse.ch/downloads/misp |
+| 🟢 | **Botvrij.eu** | `misp` | https://www.botvrij.eu/data/feed-osint |
 
-**最后更新时间:** 2025-12-08 01:12:50
+#### 📊 运行状态图例
+- 🟢 **运行正常**: 成功连接并获取最新情报数据
+- 🔴 **采集异常**: 连接超时或源数据格式错误
+- ⚫ **已禁用**: 当前配置下未启用的情报源
 
-## 配置说明
+## 🚀 快速开始
 
-### feeds.yaml配置
+### 1. 环境准备
+```bash
+pip install -r requirements.txt
+```
 
-在`config/feeds.yaml`文件中配置威胁情报源：
+### 2. 启动引擎
+```bash
+python main.py
+```
+
+## ⚙️ 配置指南
+
+所有情报源均通过 `config/feeds.yaml` 进行声明式管理，支持灵活的自定义扩展：
 
 ```yaml
 feeds:
-  - name: Feed名称
+  - name: "Feed名称"
     enabled: true
-    url: Feed URL
-    source_format: feed类型  # csv, text, misp
-    description: Feed描述
-    # 其他类型特定配置
+    url: "[https://example.com/feed.csv](https://example.com/feed.csv)"
+    source_format: "csv"  # 支持 csv, text, misp
+    description: "简短的情报源描述"
+    # 不同类型的源支持特定的高级配置参数
 ```
 
-## 输出
+## 📂 数据产出
 
-- `output/collections.csv`: 原始收集的数据
-- `final_threat.csv`: 去重后的最终威胁情报库
+- `output/description.json`: **情报源下载描述**
+- `output/collections.csv`: **原始采集数据** (增量缓存)
+- `output/final_threat.csv`: **最终情报库** (已清洗、去重、标准化的全量高价值情报)
 
-## 许可证
+## 📄 开源协议
 
-MIT License
+本项目遵循 [MIT License](LICENSE) 开源协议。
