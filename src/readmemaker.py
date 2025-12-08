@@ -60,29 +60,38 @@ class READMEGenerator:
         # 项目标题
         content.append("# FinalThreatFeed")
         content.append("")
-        content.append("🚀 开源威胁情报自动化搜集工具")
+        content.append("🚀 **高性能开源威胁情报聚合引擎**")
         content.append("")
         
         # 项目简介
-        content.append("## 项目简介")
+        content.append("## 📖 项目简介")
         content.append("")
-        content.append("FinalThreatFeed是一个功能强大的威胁情报自动化搜集工具，能够从多个公开的威胁情报源获取数据，并进行统一格式处理和存储。")
+        content.append("FinalThreatFeed 是一款现代化的威胁情报（CTI）自动化采集与融合框架。它基于高性能异步架构设计，旨在解决多源情报采集难、格式混乱、数据冗余等痛点。")
         content.append("")
-        content.append("### 主要特性")
-        content.append("")
-        content.append("- 📊 支持多种格式的威胁情报源（CSV、文本、MISP等）")
-        content.append("- ⚡ 异步并发采集，提高效率")
-        content.append("- 🧹 自动去重和数据清洗")
-        content.append("- 📈 每日自动更新威胁情报")
-        content.append("- 🎯 可配置的威胁情报源")
-        content.append("- 🔍 支持IOC类型识别和分类")
+        content.append("通过标准化的数据处理管道，FinalThreatFeed 能够从全球开源情报源中持续汲取高价值数据，自动完成清洗、去重与结构化处理，为企业的安全防御体系提供精准、鲜活的威胁情报支撑。")
         content.append("")
         
-        # 订阅列表
-        content.append("## 订阅列表")
+        # 核心特性
+        content.append("### ✨ 核心特性")
         content.append("")
-        content.append("| 状态 | 名称 | 类型 | 描述 | URL |")
-        content.append("|------|------|------|------|-----|")
+        content.append("- ⚡ **极速异步架构**: 采用 Python Asyncio + HTTPX 构建高并发采集核心，大幅提升数据吞吐效率。")
+        content.append("- 🧩 **全栈格式兼容**: 原生支持 MISP、CSV、Text 等主流情报格式，轻松打破数据源格式壁垒。")
+        content.append("- 🧹 **智能清洗去重**: 内置精细化数据治理算法，自动剔除噪声与重复数据，确保情报的高信噪比。")
+        content.append("- 🔄 **全生命周期管理**: 自动化的情报老化与更新机制，确保本地情报库始终保持最新状态。")
+        content.append("- 🛠️ **灵活扩展配置**: 基于 YAML 的声明式配置管理，无需编码即可快速接入新的情报源。")
+        content.append("- 🏷️ **深度 IOC 识别**: 自动解析并分类 IP、Domain、URL 等关键威胁指标，赋能精细化分析。")
+        content.append("")
+        # 更新时间
+        content.append(f"> 🕒 **最后更新时间:** `{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}`")
+        content.append("")
+
+        
+        # 订阅列表
+        content.append("## 📡 订阅源状态监控")
+        content.append("")
+        # 移除描述列，保持表格简洁大气
+        content.append("| 运行状态 | 情报源名称 | 格式类型 | 源地址 (URL) |")
+        content.append("|:---:|---|:---:|---|")
         
         # 添加订阅行
         for feed in self.feeds_data:
@@ -98,79 +107,91 @@ class READMEGenerator:
             # 订阅信息
             name = feed['name']
             feed_type = feed['source_format']
-            description = feed.get('description', '-')
             url = feed.get('url', '-')
             
             # 添加行
-            content.append(f"| {status_emoji} | {name} | {feed_type} | {description} | {url} |")
+            content.append(f"| {status_emoji} | **{name}** | `{feed_type}` | {url} |")
         
         content.append("")
         
         # 状态说明
-        content.append("### 状态说明")
-        content.append("")
-        content.append("- 🟢: 订阅正常")
-        content.append("- 🔴: 订阅异常")
-        content.append("- ⚫: 订阅已禁用")
+        content.append("#### 📊 运行状态图例")
+        content.append("- 🟢 **运行正常**: 成功连接并获取最新情报数据")
+        content.append("- 🔴 **采集异常**: 连接超时或源数据格式错误")
+        content.append("- ⚫ **已禁用**: 当前配置下未启用的情报源")
         content.append("")
         
-        # 更新时间
-        content.append(f"**最后更新时间:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        # 使用说明
+        content.append("## 🚀 快速开始")
+        content.append("")
+        content.append("### 1. 环境准备")
+        content.append("```bash")
+        content.append("pip install -r requirements.txt")
+        content.append("```")
+        content.append("")
+        content.append("### 2. 启动引擎")
+        content.append("```bash")
+        content.append("python main.py")
+        content.append("```")
         content.append("")
         
         # 配置说明
-        content.append("## 配置说明")
+        content.append("## ⚙️ 配置指南")
         content.append("")
-        content.append("### feeds.yaml配置")
-        content.append("")
-        content.append("在`config/feeds.yaml`文件中配置威胁情报源：")
+        content.append("所有情报源均通过 `config/feeds.yaml` 进行声明式管理，支持灵活的自定义扩展：")
         content.append("")
         content.append("```yaml")
         content.append("feeds:")
-        content.append("  - name: ""Feed名称""")
-        content.append("    enabled: true")
-        content.append("    url: ""Feed URL""")
-        content.append("    source_format: ""feed类型""  # csv, text, misp")
-        content.append("    description: ""Feed描述""")
-        content.append("    # 其他类型特定配置")
+        # 使用单引号包裹，防止双引号转义问题
+        content.append('  - name: "Feed名称"')
+        content.append('    enabled: true')
+        content.append('    url: "[https://example.com/feed.csv](https://example.com/feed.csv)"')
+        content.append('    source_format: "csv"  # 支持 csv, text, misp')
+        content.append('    description: "简短的情报源描述"')
+        content.append("    # 不同类型的源支持特定的高级配置参数")
         content.append("```")
         content.append("")
         
         # 输出路径
-        content.append("## 输出")
+        content.append("## 📂 数据产出")
         content.append("")
-        content.append("- `output/collections.csv`: 原始收集的数据")
-        content.append("- `final_threat.csv`: 去重后的最终威胁情报库")
+        content.append("- `output/description.json`: **情报源下载描述**")
+        content.append("- `output/collections.csv`: **原始采集数据** (增量缓存)")
+        content.append("- `output/final_threat.csv`: **最终情报库** (已清洗、去重、标准化的全量高价值情报)")
         content.append("")
         
         # 许可证
-        content.append("## 许可证")
+        content.append("## 📄 开源协议")
         content.append("")
-        content.append("MIT License")
+        content.append("本项目遵循 [MIT License](LICENSE) 开源协议。")
         content.append("")
         
         # 写入文件
-        with open(self.readme_path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(content))
-        
-        logger.info(f"README.md generated at {self.readme_path}")
-        return True
+        try:
+            with open(self.readme_path, 'w', encoding='utf-8') as f:
+                f.write('\n'.join(content))
+            logger.info(f"README.md generated at {self.readme_path}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to write README.md: {e}")
+            return False
     
     def run(self):
         """执行完整的生成流程"""
         if not self.load_feeds_config():
             return False
         
-        # 确保feed_status不为空
+        # 确保feed_status不为空，如果为空（例如手动运行脚本时），填充默认状态
         if not self.feed_status:
             logger.warning("No feed status provided. Using default status.")
-            # 为未设置状态的feed设置默认值
-            for feed in self.feeds_data:
-                if feed['name'] not in self.feed_status:
-                    if feed.get('enabled', False):
-                        self.feed_status[feed['name']] = 'unknown'
-                    else:
-                        self.feed_status[feed['name']] = 'disabled'
+        
+        # 补全状态
+        for feed in self.feeds_data:
+            if feed['name'] not in self.feed_status:
+                if feed.get('enabled', False):
+                    self.feed_status[feed['name']] = 'unknown'
+                else:
+                    self.feed_status[feed['name']] = 'disabled'
         
         return self.generate_readme()
 
