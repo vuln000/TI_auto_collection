@@ -17,7 +17,7 @@ FinalThreatFeed 是一款现代化的威胁情报（CTI）自动化采集与融�
 - 🛠️ **灵活扩展配置**: 基于 YAML 的声明式配置管理，无需编码即可快速接入新的情报源。
 - 🏷️ **深度 IOC 识别**: 自动解析并分类 IP、Domain、URL 等关键威胁指标，赋能精细化分析。
 
-> 🕒 **最后更新时间:** `2025-12-09 01:12:18`
+> 🕒 **最后更新时间:** `2025-12-10 01:14:08`
 
 ## 📡 订阅源状态监控
 
@@ -25,7 +25,7 @@ FinalThreatFeed 是一款现代化的威胁情报（CTI）自动化采集与融�
 |:---:|---|:---:|---|
 | 🟢 | **abuse.ch-SSL** | `csv` | https://sslbl.abuse.ch/blacklist/sslblacklist.csv |
 | 🟢 | **Alienvault-IP-Reputation** | `csv` | https://reputation.alienvault.com/reputation.generic |
-| 🟢 | **Phishtank** | `csv` | https://data.phishtank.com/data/online-valid.csv |
+| 🔴 | **Phishtank** | `csv` | https://data.phishtank.com/data/online-valid.csv |
 | ⚫ | **Tor_Exit_Nodes** | `text` | https://check.torproject.org/torbulkexitlist |
 | 🟢 | **IPsum-l4** | `text` | https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt |
 | 🟢 | **IPsum-l5** | `text` | https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt |
