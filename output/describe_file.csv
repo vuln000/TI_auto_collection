@@ -88,3 +88,11 @@ download_time,name,source_format,url,event_uuid,data_type,data_size,threat_level
 2025-12-11T01:14:38.062746,abuse.ch-SSL,csv,https://sslbl.abuse.ch/blacklist/sslblacklist.csv,,csv,8610,,
 2025-12-11T01:14:38.075060,abuse.ch,misp,https://threatfox.abuse.ch/downloads/misp/4b1c0bd8-a7f8-402e-9ce2-ee097c67a5d8.json,4b1c0bd8-a7f8-402e-9ce2-ee097c67a5d8,json,506,2,2025-12-11T00:03:06
 2025-12-11T01:14:45.182149,Phishtank,csv,https://data.phishtank.com/data/online-valid.csv,,csv,46986,,
+2025-12-12T01:14:24.435337,IPsum-l4,text,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt,,text,9306,,
+2025-12-12T01:14:24.450544,IPsum-l5,text,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt,,text,2966,,
+2025-12-12T01:14:25.828570,abuse.ch-SSL,csv,https://sslbl.abuse.ch/blacklist/sslblacklist.csv,,csv,8617,,
+2025-12-12T01:14:25.871463,Alienvault-IP-Reputation,csv,https://reputation.alienvault.com/reputation.generic,,csv,609,,
+2025-12-12T01:14:25.890856,abuse.ch-URLhasus,misp,https://urlhaus.abuse.ch/downloads/misp/e4a613db-5df8-46fa-bbd6-988f94eb3183.json,e4a613db-5df8-46fa-bbd6-988f94eb3183,json,860,2,2025-12-12T00:15:20
+2025-12-12T01:14:25.930087,abuse.ch-Bazaar,misp,https://bazaar.abuse.ch/downloads/misp//0c6c4b43-383a-4fb0-b6a2-880de6e95573.json,0c6c4b43-383a-4fb0-b6a2-880de6e95573,json,1404,2,2025-12-12T00:03:01
+2025-12-12T01:14:31.423808,Phishtank,csv,https://data.phishtank.com/data/online-valid.csv,,csv,46869,,
+2025-12-12T01:14:31.458015,abuse.ch,misp,https://threatfox.abuse.ch/downloads/misp/df1a9b8a-0294-47ed-8aef-08f0873bb582.json,df1a9b8a-0294-47ed-8aef-08f0873bb582,json,1475,2,2025-12-12T00:03:06
